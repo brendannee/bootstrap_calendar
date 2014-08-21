@@ -16,7 +16,7 @@
         <link href="lib/css/bootstrap-responsive.css" rel="stylesheet">
 		<link href="lib/css/font-awesome.min.css" rel="stylesheet">
 
-        <script src="../js/bootstrap_calendar.min.js"></script>
+        <script src="../js/bootstrap_calendar.js"></script>
         <link href="../css/bootstrap_calendar.css" rel="stylesheet">
 
         <style type="text/css">
@@ -70,6 +70,17 @@
 		    border-left: 6px solid transparent;
 		    content: '';
 		  }        
+
+
+      .calendar .event.awesome {
+        background-color:#ff6fcf;
+      }
+      .calendar .event.baller {
+        border: 5px dotted #00ff00;
+      }
+      .calendar .event.killer a {
+        color: #ff8000;
+      }
         </style>
     </head>
     <body>
@@ -131,8 +142,8 @@
 								ex: "http://github.com"
 							</dd>
 							<dd>
-								<b>- [3]</b> (string): color<br>
-								ex: "#333"
+								<b>- [3]</b> (string): css class<br>
+								ex: "awesome"
 							</dd>
 							<dd>
 								<b>- [4]</b> (string): html popover<br>
@@ -265,13 +276,35 @@ exit;
 				theMonths = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 				theDays = ["S", "M", "T", "W", "T", "F", "S"];
 
+        var today = new Date();
+        var month = today.getMonth()+1;
+        var year = today.getFullYear();
+
 				$('.calendar_test').calendar({
 					months: theMonths,
 					days: theDays,
-					req_ajax: {
-						type: 'get',
-						url: 'json.php'
-					}
+					events: [
+            [
+              "7/"+month+"/"+year, 
+              'bootstrap logo popover!', 
+              '#', 
+              'awesome', 
+              '<img src="http://bit.ly/XRpKAE" />'
+            ],
+            [
+              "17/"+month+"/"+year,
+              'octocat!', 
+              'https://github.com/logos', 
+              'baller', 
+              'new github logo <img src="http://git.io/Xmayvg" />'
+            ],
+            [
+              "27/"+month+"/"+year,
+              'github drinkup', 
+              'https://github.com/blog/category/drinkup', 
+              'killer'
+            ]
+          ]
 				});
 			});
 		</script>

@@ -1,7 +1,7 @@
 {
   "name": "bootstrap_calendar",
   "version": "1.0.1",
-  "homepage": "https://github.com/xero/bootstrap_calendar",
+  "homepage": "https://github.com/jlev/bootstrap_calendar",
   "description": "A simple calendar plugin for jquery and twitter bootstrap. works inline, in dropdowns, and in the responsive navbar!",
   "main": [
     "./bootstrap_calendar/css/bootstrap_calendar.css",

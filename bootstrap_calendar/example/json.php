@@ -7,21 +7,21 @@ $array = array(
     "7/$month/$year", 
     'bootstrap logo popover!', 
     '#', 
-    '#51a351', 
+    'awesome', 
     '<img src="http://bit.ly/XRpKAE" />'
   ),
   array(
     "17/$month/$year", 
     'octocat!', 
     'https://github.com/logos', 
-    'red', 
+    'baller', 
     'new github logo <img src="http://git.io/Xmayvg" />'
   ),
   array(
     "27/$month/$year", 
     'github drinkup', 
     'https://github.com/blog/category/drinkup', 
-    'blue'
+    'killer'
   )
 );
 

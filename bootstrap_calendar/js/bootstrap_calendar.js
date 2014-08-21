@@ -312,9 +312,9 @@
                         
                         $('#' + calendar_id + '_' + events[i][0].replace(/\//g, "_") + ' a' ).attr('data-original-title', events[i][1]);
                         
-                        //bg
+                        // css class
                         if ( events[i][3] )
-                            $('#' + calendar_id + '_' + events[i][0].replace(/\//g, "_") ).css('background', events[i][3]);
+                            $('#' + calendar_id + '_' + events[i][0].replace(/\//g, "_") ).addClass(events[i][3]);
                         
                         //link
                         if ( events[i][2] == '' || events[i][2] == '#' ){
