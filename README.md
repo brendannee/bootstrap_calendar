@@ -33,8 +33,8 @@ You can now install via [bower](http://bower.io/)
 	ex: "hello world!"
 	- 2 (string): link
 	ex: "http://github.com"
-	- 3 (string): color
-	ex: "#333"
+	- 3 (string): css class
+	ex: "awesome"
 	- 4 (string): html popover
 	ex: "Text for the content of popover...description of event...image..."
 
@@ -58,7 +58,7 @@ array(
 	"7/4/2013", 
 	'bootstrap logo popover!', 
 	'#', 
-	'#51a351', 
+	'green', 
 	'<img src="http://bit.ly/XRpKAE" />'
 )
 ```
@@ -104,21 +104,21 @@ $array = array(
     "7/$month/$year", 
     'bootstrap logo popover!', 
     '#', 
-    '#51a351', 
+    'awesome', 
     '<img src="http://bit.ly/XRpKAE" />'
   ),
   array(
     "17/$month/$year", 
     'octocat!', 
     'https://github.com/logos', 
-    'blue', 
+    'killer', 
     'new github logo <img src="http://git.io/Xmayvg" />'
   ),
   array(
     "27/$month/$year", 
     'github drinkup', 
     'https://github.com/blog/category/drinkup', 
-    'red'
+    'baller'
   )
 );
 
@@ -131,4 +131,6 @@ exit;
 ##Credits
 original [bic_calendar](https://github.com/bichotll/bic_calendar) by [bic.cat](http://bic.cat/).
 
-[bootstrap_calendar](https://github.com/xero/bootstrap_calendar) fork (english localization and updates) by [xero](http://xero.nu/)
+[upstream](https://github.com/xero/bootstrap_calendar) fork (english localization and updates) by [xero](http://xero.nu/)
+
+[bootstrap_calendar](https://github.com/jlev/bootstrap_calendar) fork (css class) by [jlev](http://levinger.net/josh)
