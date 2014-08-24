@@ -110,7 +110,7 @@
                 btnNextMonth.click(function(e){
                     e.stopPropagation();
                     e.preventDefault();
-                    if ((max_month === null) || ((month+1)%12 < max_month)) {
+                    if ((max_month === null) || ((month+1)%12 <= max_month)) {
                         btnNextMonth.css({color: 'black'});
                         btnPrevMonth.css({color: 'black'});
 
@@ -125,7 +125,7 @@
                 btnPrevMonth.click(function(e){
                     e.stopPropagation();
                     e.preventDefault();
-                    if ((min_month === null) || ((month-1) > min_month)) {
+                    if ((min_month === null) || ((month-1) >= min_month)) {
                         btnPrevMonth.css({color: 'black'});
                         btnNextMonth.css({color: 'black'});
 
