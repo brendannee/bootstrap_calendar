@@ -94,7 +94,7 @@
                     
                     
                 //next/previous month controls
-                var btnNextMonth = $('<td><i class="icon-arrow-right"></i></td>');
+                var btnNextMonth = $('<td><i class="fa fa-arrow-right icon-arrow-right"></i></td>');
                 btnNextMonth.click(function(e){
                     e.stopPropagation();
                     e.preventDefault();
@@ -103,7 +103,7 @@
                         year++;
                     change_month(month, year);
                 });
-                var btnPrevMonth = $('<td><i class="icon-arrow-left"></i></td>');
+                var btnPrevMonth = $('<td><i class="fa fa-arrow-left icon-arrow-left"></i></td>');
                 btnPrevMonth.click(function(e){
                     e.stopPropagation();
                     e.preventDefault();
@@ -114,8 +114,8 @@
                     }   
                     change_month(month, year);
                 });
-                $('.icon-arrow-left').css('cursor', 'pointer');
-                $('.icon-arrow-right').css('cursor', 'pointer');
+                $('.fa-arrow-right, .icon-arrow-right').css('cursor', 'pointer');
+                $('.fa-arrow-left, .icon-arrow-left').css('cursor', 'pointer');
 
                 //current year & month label
                 var lblDate = $('<table class="table header"><tr></tr></table>');
