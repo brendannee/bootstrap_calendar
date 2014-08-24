@@ -283,6 +283,8 @@ exit;
 				$('.calendar_test').calendar({
 					months: theMonths,
 					days: theDays,
+          max_month: today.getMonth()+2,
+          min_month: today.getMonth()-2,
 					events: [
             [
               "7/"+month+"/"+year, 

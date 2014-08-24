@@ -30,6 +30,16 @@
             else
                 months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
+            var min_month, max_month;
+            if ( typeof args.min_month != "undefined" )
+                min_month = args.min_month;
+            else
+                min_month = null;
+            if ( typeof args.max_month != "undefined" )
+                max_month = args.max_month;
+            else
+                max_month = null;
+
             var show_days;
             if ( typeof args.show_days != "undefined" )
                 show_days = args.show_days;
@@ -83,7 +93,7 @@
                             if (dateTextArray[2] < 50)
                                 dateTextArray[2] += 2000;
                         }
-                        dateObj = new Date(dateTextArray[2], dateTextArray[1]-1, dateTextArray[0])
+                        dateObj = new Date(dateTextArray[2], dateTextArray[1]-1, dateTextArray[0]);
                     }
                 }
                     
@@ -95,24 +105,39 @@
                     
                 //next/previous month controls
                 var btnNextMonth = $('<td><i class="fa fa-arrow-right icon-arrow-right"></i></td>');
+                var btnPrevMonth = $('<td><i class="fa fa-arrow-left icon-arrow-left"></i></td>');
+
                 btnNextMonth.click(function(e){
                     e.stopPropagation();
                     e.preventDefault();
-                    month = (month + 1) % 12;
-                    if (month==0)
-                        year++;
-                    change_month(month, year);
+                    if ((max_month === null) || ((month+1)%12 < max_month)) {
+                        btnNextMonth.css({color: 'black'});
+                        btnPrevMonth.css({color: 'black'});
+
+                        month = (month + 1) % 12;
+                        if (month==0)
+                            year++;
+                        change_month(month, year);
+                    } else {
+                        btnNextMonth.css({color: 'grey'});
+                    }
                 });
-                var btnPrevMonth = $('<td><i class="fa fa-arrow-left icon-arrow-left"></i></td>');
                 btnPrevMonth.click(function(e){
                     e.stopPropagation();
                     e.preventDefault();
-                    month = (month - 1);
-                    if (month==-1){
-                        year--;
-                        month = 11;
-                    }   
-                    change_month(month, year);
+                    if ((min_month === null) || ((month-1) > min_month)) {
+                        btnPrevMonth.css({color: 'black'});
+                        btnNextMonth.css({color: 'black'});
+
+                        month = (month - 1);
+                        if (month==-1){
+                            year--;
+                            month = 11;
+                        }   
+                        change_month(month, year);
+                    } else {
+                        btnPrevMonth.css({color: 'grey'});
+                    }
                 });
                 $('.fa-arrow-right, .icon-arrow-right').css('cursor', 'pointer');
                 $('.fa-arrow-left, .icon-arrow-left').css('cursor', 'pointer');
@@ -142,11 +167,11 @@
                 list_week();
                 showDaysOfMonth(month, year);
                 check_events(month, year);
-            }       
+            }
 
             //week
             function list_week(){
-                if ( show_days != false ){
+                if ( show_days !== false ){
                     var lblWeek = $('<tr class="week_days" >');
                     var insertCode = '';
                     $(days).each(function(key, value){
