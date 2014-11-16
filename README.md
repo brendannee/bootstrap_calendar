@@ -21,7 +21,7 @@ You can now install via [bower](http://bower.io/)
 - min_date / max_date (Date)
   - limits the allowable range of the next / prev buttons
   - default: null
-- start_date (Date)
+- show_date (Date)
   - initial date to display
   - default: null
 - show_days (boolean)
