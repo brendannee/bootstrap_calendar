@@ -283,8 +283,9 @@ exit;
 				$('.calendar_test').calendar({
 					months: theMonths,
 					days: theDays,
-          max_month: today.getMonth()+2,
-          min_month: today.getMonth()-2,
+          min_date: new Date(2014, 6, 1),
+          max_date: new Date(2015, 2, 1),
+          start_date: new Date(2014, 11, 1),
 					events: [
             [
               "7/"+month+"/"+year, 

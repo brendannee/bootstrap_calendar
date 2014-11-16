@@ -1,6 +1,6 @@
 {
   "name": "bootstrap_calendar",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "homepage": "https://github.com/jlev/bootstrap_calendar",
   "description": "A simple calendar plugin for jquery and twitter bootstrap. works inline, in dropdowns, and in the responsive navbar!",
   "main": [

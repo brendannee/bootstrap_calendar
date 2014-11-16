@@ -30,15 +30,21 @@
             else
                 months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
-            var min_month, max_month;
-            if ( typeof args.min_month != "undefined" )
-                min_month = args.min_month;
+            var show_date;
+            if ( typeof args.show_date != "undefined" )
+                show_date = args.show_date;
             else
-                min_month = null;
-            if ( typeof args.max_month != "undefined" )
-                max_month = args.max_month;
+                show_date = null;
+
+            var min_date, max_date;
+            if ( typeof args.min_date != "undefined" )
+                min_date = args.min_date;
             else
-                max_month = null;
+                min_date = null;
+            if ( typeof args.max_date != "undefined" )
+                max_date = args.max_date;
+            else
+                max_date = null;
 
             var show_days;
             if ( typeof args.show_days != "undefined" )
@@ -78,7 +84,12 @@
                 list_week();
                     
                 //date calculation object
-                var dateObj = new Date();
+                var dateObj;
+                if (show_date === null) {
+                    dateObj = new Date();
+                } else { 
+                    dateObj = show_date;
+                }
                 //check for date input
                 var dateText = elem.val();
                 if (dateText!= ""){
@@ -101,8 +112,7 @@
                 var month = dateObj.getMonth();
                 var year = dateObj.getFullYear();
                 showDaysOfMonth(month, year);
-                    
-                    
+                
                 //next/previous month controls
                 var btnNextMonth = $('<td><i class="fa fa-arrow-right icon-arrow-right"></i></td>');
                 var btnPrevMonth = $('<td><i class="fa fa-arrow-left icon-arrow-left"></i></td>');
@@ -110,13 +120,20 @@
                 btnNextMonth.click(function(e){
                     e.stopPropagation();
                     e.preventDefault();
-                    if ((max_month === null) || ((month+1)%12 <= max_month)) {
+
+                    month_update = (month + 1) % 12;
+                    year_update = year;
+                    if (month_update === 0) {
+                        year_update = year+1;
+                    }
+                    date_update = new Date(year_update, month_update);
+
+                    if ((max_date === null) || (date_update <= max_date)) {
                         btnNextMonth.css({color: 'black'});
                         btnPrevMonth.css({color: 'black'});
 
-                        month = (month + 1) % 12;
-                        if (month==0)
-                            year++;
+                        month = month_update;
+                        year = year_update;
                         change_month(month, year);
                     } else {
                         btnNextMonth.css({color: 'grey'});
@@ -125,15 +142,21 @@
                 btnPrevMonth.click(function(e){
                     e.stopPropagation();
                     e.preventDefault();
-                    if ((min_month === null) || ((month-1) >= min_month)) {
+
+                    month_update = (month - 1);
+                    year_update = year;
+                    if (month_update == -1){
+                        year_update = year-1;
+                        month_update = 11;
+                    }
+                    date_update = new Date(year_update, month_update);
+
+                    if ((min_date === null) || (date_update >= min_date)) {
                         btnPrevMonth.css({color: 'black'});
                         btnNextMonth.css({color: 'black'});
 
-                        month = (month - 1);
-                        if (month==-1){
-                            year--;
-                            month = 11;
-                        }   
+                        month = month_update;
+                        year = year_update;
                         change_month(month, year);
                     } else {
                         btnPrevMonth.css({color: 'grey'});

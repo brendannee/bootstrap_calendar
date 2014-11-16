@@ -18,8 +18,11 @@ You can now install via [bower](http://bower.io/)
 	- default: default: ["S", "M", "T", "W", "T", "F", "S"]
 - months (array)
 	- default: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
-- min_month / max_month (number)
+- min_date / max_date (Date)
   - limits the allowable range of the next / prev buttons
+  - default: null
+- start_date (Date)
+  - initial date to display
   - default: null
 - show_days (boolean)
 	- default: true
@@ -136,4 +139,4 @@ original [bic_calendar](https://github.com/bichotll/bic_calendar) by [bic.cat](h
 
 [upstream](https://github.com/xero/bootstrap_calendar) fork (english localization and updates) by [xero](http://xero.nu/)
 
-[bootstrap_calendar](https://github.com/jlev/bootstrap_calendar) fork (css class, font-awesome icons) by [jlev](http://levinger.net/josh)
+[bootstrap_calendar](https://github.com/jlev/bootstrap_calendar) fork (css class, font-awesome icons, min/max/start_date) by [jlev](http://levinger.net/josh)
