@@ -5,11 +5,11 @@
 */
 (function($){
     $.fn.calendar = function(options) {
-        
+
         var args = $.extend({}, $.fn.calendar.defaults, options);
-        
+
         this.each(function(){
-            
+
             var calendar;
             var lblDaysMonth;
             var lblTextMonth = $('<div class="visualmonthyear"></div>');
@@ -17,7 +17,7 @@
             var calendar_id = "cal_" + Math.floor(Math.random()*99999).toString(36);
 
             var events = args.events;
-            
+
             var days;
             if ( typeof args.days != "undefined" )
                 days = args.days;
@@ -72,9 +72,9 @@
 
             var elem = $(this);
             showCalendar();
-                    
+
             /*** functions ***/
-            
+
             //display
             function showCalendar(){
 
@@ -82,12 +82,12 @@
                 lblDaysMonth = $('<table class="daysmonth table table">');
 
                 list_week();
-                    
+
                 //date calculation object
                 var dateObj;
                 if (show_date === null) {
                     dateObj = new Date();
-                } else { 
+                } else {
                     dateObj = show_date;
                 }
                 //check for date input
@@ -107,12 +107,12 @@
                         dateObj = new Date(dateTextArray[2], dateTextArray[1]-1, dateTextArray[0]);
                     }
                 }
-                    
+
                 //current month & year
                 var month = dateObj.getMonth();
                 var year = dateObj.getFullYear();
                 showDaysOfMonth(month, year);
-                
+
                 //next/previous month controls
                 var btnNextMonth = $('<td><i class="fa fa-arrow-right icon-arrow-right"></i></td>');
                 var btnPrevMonth = $('<td><i class="fa fa-arrow-left icon-arrow-left"></i></td>');
@@ -121,12 +121,12 @@
                     e.stopPropagation();
                     e.preventDefault();
 
-                    month_update = (month + 1) % 12;
-                    year_update = year;
+                    var month_update = (month + 1) % 12;
+                    var year_update = year;
                     if (month_update === 0) {
                         year_update = year+1;
                     }
-                    date_update = new Date(year_update, month_update);
+                    var date_update = new Date(year_update, month_update);
 
                     if ((max_date === null) || (date_update <= max_date)) {
                         btnNextMonth.css({color: 'black'});
@@ -143,13 +143,13 @@
                     e.stopPropagation();
                     e.preventDefault();
 
-                    month_update = (month - 1);
-                    year_update = year;
+                    var month_update = (month - 1);
+                    var year_update = year;
                     if (month_update == -1){
                         year_update = year-1;
                         month_update = 11;
                     }
-                    date_update = new Date(year_update, month_update);
+                    var date_update = new Date(year_update, month_update);
 
                     if ((min_date === null) || (date_update >= min_date)) {
                         btnPrevMonth.css({color: 'black'});
@@ -178,13 +178,13 @@
                 //calendar.append(lblWeek);
                 //lblDaysMonth.prepend(lblWeek);
                 calendar.append(lblDaysMonth);
-                    
+
                 //render calendar
                 elem.append(calendar);
-                
+
                 check_events(month, year);
             }
-            
+
             function change_month(month, year){
                 lblDaysMonth.empty();
                 list_week();
@@ -213,22 +213,22 @@
                     lblDaysMonth.append(lblWeek);
                 }
             }
-                    
+
             function showDaysOfMonth(month, year){
                 //console.log("show (month, year): ", month, " ", year)
                 lblTextMonth.text(months[month] + " " + year);
-                
+
                 //days of month
                 var day_counter = 1;
-                
+
 
                 var firstDay = calculateWeekday(1, month, year);
                 var lastDaymonth = lastDay(month,year);
-                
+
                 var next_month = month + 1;
-                
+
                 var lblDaysMonth_string = "";
-                
+
                 //render first row of week
                 for (var i=0; i<7; i++){
                     if (i < firstDay){
@@ -256,7 +256,7 @@
                     }
                     lblDaysMonth_string += dayCode
                 }
-                
+
                 //rest of month
                 var currentWeekDay = 1;
                 while (day_counter <= lastDaymonth){
@@ -277,7 +277,7 @@
                     currentWeekDay++;
                     lblDaysMonth_string += dayCode
                 }
-                
+
                 //fill empty days
                 currentWeekDay--;
                 if (currentWeekDay%7!=0){
@@ -293,7 +293,7 @@
                         lblDaysMonth_string += dayCode
                     }
                 }
-                
+
                 lblDaysMonth.append( lblDaysMonth_string );
             }
             //calcuation number of days in week
@@ -302,23 +302,23 @@
                 var numDay = dateObj.getDay();
                 return numDay;
             }
-            
+
             //date validation
             function checkdate (m, d, y) {
                 // function by http://kevin.vanzonneveld.net
                 // extracted from the manual phpjs.org libraries at http://www.desarrolloweb.com/manuales/manual-librerias-phpjs.html
                 return m > 0 && m < 13 && y > 0 && y < 32768 && d > 0 && d <= (new Date(y, m, 0)).getDate();
             }
-            
+
             //calculate last day of month for a given year
-            function lastDay(month,year){ 
-                var last_day=28; 
-                while (checkdate(month+1,last_day + 1,year)){ 
-                    last_day++; 
-                } 
-                return last_day; 
-            } 
-            
+            function lastDay(month,year){
+                var last_day=28;
+                while (checkdate(month+1,last_day + 1,year)){
+                    last_day++;
+                }
+                return last_day;
+            }
+
             function validateDate(date){
                 var dateArray = date.split("/");
                 if (dateArray.length!=3)
@@ -348,22 +348,22 @@
                     markEvents(month, year);
                 }
             }
-            
+
             function markEvents(month, year){
                 var t_month = month + 1;
-                
+
                 for(var i=0; i< events.length; i++) {
-                    
+
                     if ( events[i][0].split('/')[1] == t_month && events[i][0].split('/')[2] == year ){
 
                         $('#' + calendar_id + '_' + events[i][0].replace(/\//g, "_") ).addClass('event');
-                        
+
                         $('#' + calendar_id + '_' + events[i][0].replace(/\//g, "_") + ' a' ).attr('data-original-title', events[i][1]);
-                        
+
                         // css class
                         if ( events[i][3] )
                             $('#' + calendar_id + '_' + events[i][0].replace(/\//g, "_") ).addClass(events[i][3]);
-                        
+
                         //link
                         if ( events[i][2] == '' || events[i][2] == '#' ){
                             if ( events[i][4] != '' ){
@@ -388,7 +388,7 @@
                         }
                     }
                 }
-                
+
                 $('#' + calendar_id + ' ' + '.event_tooltip a').tooltip(tooltip_options);
                 $('#' + calendar_id + ' ' + '.event_popover a').popover(popover_options);
 
@@ -396,9 +396,9 @@
                     $(this).popover('toggle');
                 } );
             }
-            
+
         /*** --functions-- ***/
-            
+
         });
         return this;
     };
